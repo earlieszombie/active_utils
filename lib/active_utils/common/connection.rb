@@ -11,6 +11,7 @@ module ActiveMerchant
     OPEN_TIMEOUT = 60
     READ_TIMEOUT = 60
     VERIFY_PEER = true
+    FORCE_SSL_V3 = true
     CA_FILE = (File.dirname(__FILE__) + '/../../certs/cacert.pem')
     CA_PATH = nil
     RETRY_SAFE = false
@@ -37,7 +38,8 @@ module ActiveMerchant
       @open_timeout = OPEN_TIMEOUT
       @read_timeout = READ_TIMEOUT
       @retry_safe   = RETRY_SAFE
-      @verify_peer  = VERIFY_PEER
+      @verify_peer  = VERIFY_PEER 
+      @force_ssl_v3 = FORCE_SSL_V3
       @ca_file      = CA_FILE
       @ca_path      = CA_PATH
       @max_retries  = MAX_RETRIES
@@ -111,7 +113,7 @@ module ActiveMerchant
       
       http.ssl_version = 'SSLv3' if force_ssl_v3
       
-      info("using #{http.ssl_version} protocol", 'SSL')
+      info 'using %s protocol' % [http.ssl_version], 'SSL'
 
       if verify_peer
         http.verify_mode = OpenSSL::SSL::VERIFY_PEER
