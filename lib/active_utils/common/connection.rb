@@ -111,6 +111,7 @@ module ActiveMerchant
       
       http.ssl_version = 'SSLv3' if force_ssl_v3
       
+      info("using #{http.ssl_version} protocol", 'SSL')
 
       if verify_peer
         http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -119,6 +120,7 @@ module ActiveMerchant
       else
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
+      
     end
 
     def configure_cert(http)
