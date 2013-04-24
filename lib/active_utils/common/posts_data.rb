@@ -44,7 +44,7 @@ module ActiveMerchant #:nodoc:
       connection.read_timeout = read_timeout
       connection.retry_safe   = retry_safe
       connection.verify_peer  = ssl_strict
-      connection.force_ssl3   = ssl_v3
+      connection.force_ssl_v3 = ssl_v3
       connection.logger       = logger
       connection.max_retries  = max_retries
       connection.tag          = self.class.name
