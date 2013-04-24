@@ -7,6 +7,6 @@ Bundler.setup
 
 require 'test/unit'
 require 'active_utils'
-require 'mocha'
+require 'mocha/setup'
 
 include ActiveMerchant

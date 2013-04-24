@@ -45,6 +45,16 @@ class PostsDataTest < Test::Unit::TestCase
     SSLPoster.ssl_strict = false
     @poster.raw_ssl_request(:post, "https://shopify.com", "", {})
   end
+  
+  def test_logger_warns_if_ssl_v3_enabled
+    @poster.logger = stub()
+    @poster.logger.expects(:warn).with("PostsDataTest::SSLPoster forcing SSLv3 protocol"
+
+    Connection.any_instance.stubs(:request)
+
+    SSLPoster.ssl_v3 = true
+    @poster.raw_ssl_request(:post, "https://shopify.com", "", {})
+  end
 
   def test_logger_no_warning_if_ssl_strict_enabled
     @poster.logger = stub()
