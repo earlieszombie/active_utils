@@ -20,6 +20,7 @@ module ActiveMerchant
     attr_accessor :open_timeout
     attr_accessor :read_timeout
     attr_accessor :verify_peer
+    attr_accessor :force_ssl3
     attr_accessor :ca_file
     attr_accessor :ca_path
     attr_accessor :retry_safe
@@ -107,6 +108,9 @@ module ActiveMerchant
       return unless endpoint.scheme == "https"
 
       http.use_ssl = true
+      
+      http.ssl_version = 'SSLv3' if force_ssl3
+      
 
       if verify_peer
         http.verify_mode = OpenSSL::SSL::VERIFY_PEER
